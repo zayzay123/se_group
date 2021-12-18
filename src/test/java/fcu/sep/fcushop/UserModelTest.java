@@ -61,4 +61,12 @@ public class UserModelTest {
         String actualOutput = user.getPhoneNumber();
         Assert.assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void testUserOderNumber() {
+        String expectedOutput = "32165498651";
+        user.setOrderNumber("32165498651");
+        String actualOutput = user.getOrderNumber();
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 }
