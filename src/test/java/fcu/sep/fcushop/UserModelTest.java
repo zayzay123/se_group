@@ -16,9 +16,9 @@ public class UserModelTest {
 
     @Test
     public void testUserId() {
-        String expectedOutput = "AB00000001";
-        user.setId("AB00000001");
-        String actualOutput = user.getId();
+        int expectedOutput = 1;
+        user.setId(1);
+        int actualOutput = user.getId();
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 
