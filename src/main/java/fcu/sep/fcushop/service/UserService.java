@@ -25,4 +25,17 @@ public class UserService {
                     .toString();
         }
     }
+
+    public void pushUser(String userName, String account, String password, String email, String phoneNumber) {
+        try (Connection connection = sql2oDbHandler.getConnector().open()) {
+            String query = "insert into USER (NAME, ACCOUNT, PASSWORD, EMAIL, PHONE_NUMBER)"
+                    + "values (userName, account, password, email, phoneNumber)";
+            connection.createQuery(query)
+                    .addParameter("userName", userName)
+                    .addParameter("account", account)
+                    .addParameter("password", password)
+                    .addParameter("email", email)
+                    .addParameter("phoneNumber", phoneNumber);
+        }
+    }
 }
