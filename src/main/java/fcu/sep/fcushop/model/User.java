@@ -2,7 +2,7 @@ package fcu.sep.fcushop.model;
 
 public class User {
 
-    private String id;
+    private int id;
 
     private String name;
 
@@ -16,7 +16,7 @@ public class User {
 
     private String orderNumber;
 
-    public User(String id, String name, String account, String password, String email, String phoneNumber, String orderNumber) {
+    public User(int id, String name, String account, String password, String email, String phoneNumber, String orderNumber) {
         this.id = id;
         this.name = name;
         this.account = account;
@@ -29,9 +29,9 @@ public class User {
     public User() {
     }
 
-    public String getId() { return id; }
+    public int getId() { return id; }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
 
