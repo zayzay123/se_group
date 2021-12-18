@@ -14,17 +14,19 @@ public class User {
 
     private String phoneNumber;
 
-    public User() {
+    private String orderNumber;
 
-    }
-
-    public User(String id, String name, String account, String password, String email, String phoneNumber) {
+    public User(String id, String name, String account, String password, String email, String phoneNumber, String orderNumber) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.orderNumber = orderNumber;
+    }
+
+    public User() {
     }
 
     public String getId() { return id; }
@@ -50,4 +52,8 @@ public class User {
     public String getPhoneNumber() { return phoneNumber; }
 
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getOrderNumber() { return orderNumber; }
+
+    public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
 }
