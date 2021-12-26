@@ -14,16 +14,16 @@ public class User {
 
     private String phoneNumber;
 
-    private String orderNumber;
+    private int buyId;
 
-    public User(int id, String name, String account, String password, String email, String phoneNumber, String orderNumber) {
+    public User(int id, String name, String account, String password, String email, String phoneNumber, int buyId) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.orderNumber = orderNumber;
+        this.buyId = buyId;
     }
 
     public User() {
@@ -53,7 +53,7 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public String getOrderNumber() { return orderNumber; }
+    public int getBuyId() { return buyId; }
 
-    public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
+    public void setBuyId(int buyId) { this.buyId = buyId; }
 }
