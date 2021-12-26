@@ -1,10 +1,11 @@
 package fcu.sep.fcushop.controller;
 
+import fcu.sep.fcushop.model.User;
 import fcu.sep.fcushop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -12,29 +13,44 @@ public class UserController {
     @Autowired
     UserService userManager;
 
-    @PostMapping("/register/{userName}{account}{password}{email}{phoneNumber}")
-    public String register(@PathVariable("userName") String userName, @PathVariable("account") String account, @PathVariable("password") String password,
-        @PathVariable("email") String email, @PathVariable("phoneNumber") String phoneNumber) {
-        if (userManager.getUserPassword(account) == null) {
-            userManager.pushUser(userName, account, password, email, phoneNumber);
-            return "註冊成功";
+    @GetMapping("/register/{data}")
+    public String register(@PathVariable("data") String data) {
+        String[] buf = data.split(",");
+        User user;
+        user = new User();
+        for (User users : userManager.getUser(buf[1])) {
+            user = users;
         }
-        return "註冊失敗";
+        if (user.getName() == null) {
+            userManager.pushUser(buf[0],buf[1], buf[2], buf[3], buf[4]);
+            return "註冊成功";
+        } else {
+            return "此帳號已被使用";
+        }
     }
 
-    @PostMapping("/logIn/{account}{password}")
-    public String logIn(@PathVariable("account") String account, @PathVariable("password") String password) {
-        String userName;
-        if (userManager.getUserPassword(account) == null) {
+    @GetMapping("/login/{data}")
+    public String login(@PathVariable("data") String data) {
+        String name, account, password;
+        String[] buf;
+        buf = data.split(",");
+        account = buf[0];
+        password = buf[1];
+        User user;
+        user = new User();
+        for (User users : userManager.getUser(account)) {
+            user = users;
+        }
+        if (user.getName() == null) {
             return "這帳號不存在";
         } else {
-            int comp = password.compareTo(userManager.getUserPassword(account));
+            int comp = password.compareTo(user.getPassword());
             if (comp != 0) {
                 return "密碼錯誤";
             } else {
-                userName = userManager.getUserName(account);
+                name = user.getName();
             }
         }
-        return "Hello " + userName;
+        return "你好! " + name;
     }
 }
