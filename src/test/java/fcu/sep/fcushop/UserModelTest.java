@@ -64,9 +64,9 @@ public class UserModelTest {
 
     @Test
     public void testUserOderNumber() {
-        String expectedOutput = "32165498651";
-        user.setOrderNumber("32165498651");
-        String actualOutput = user.getOrderNumber();
+        int expectedOutput = 1;
+        user.setBuyId(1);
+        int actualOutput = user.getBuyId();
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 }
