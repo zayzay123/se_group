@@ -22,7 +22,18 @@ public class BuyController {
 
   }
 
-  @GetMapping("/buy/{keyword}")
+  @GetMapping("/buy/{data}")
+  public String buy(@PathVariable("data") String data) {
+    String buf = data;
+    Buy buy;
+    buy = new Buy();
+
+    productManager.pushBuy(buf);
+
+    return "下單成功";
+  }
+
+  //@GetMapping("/buy/{keyword}")
   public List<Buy> getBuy(@PathVariable("keyword") String keyword) {
     return productManager.getBuy(keyword);
   }

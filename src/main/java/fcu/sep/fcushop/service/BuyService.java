@@ -27,7 +27,15 @@ public class BuyService {
     }
   }
 
-
+  public void pushBuy(String buyName) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "insert into BUY (NAME)"
+          + "values (:buyName)";
+      connection.createQuery(query)
+          .addParameter("buyName", buyName)
+          .executeUpdate();
+    }
+  }
 
   public List<Buy> getBuy(String keyword) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
