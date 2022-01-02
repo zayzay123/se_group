@@ -14,6 +14,16 @@ public class UserService {
     @Autowired
     private Sql2oDbHandler sql2oDbHandler;
 
+    public  void pushBuyIdIntoUser(int buyId) {
+        try (Connection connection = sql2oDbHandler.getConnector().open()) {
+            String query = "insert into USER (BUY_ID)"
+                + "values (:buyId)";
+            connection.createQuery(query)
+                .addParameter("buyId", buyId)
+                .executeUpdate();
+        }
+    }
+
     public void pushUser(String userName, String account, String password, String email, String phoneNumber) {
         try (Connection connection = sql2oDbHandler.getConnector().open()) {
             String query = "insert into USER (NAME, ACCOUNT, PASSWORD, EMAIL, PHONE_NUMBER)"
