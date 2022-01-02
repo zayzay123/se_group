@@ -27,6 +27,8 @@ public class BuyService {
     }
   }
 
+
+
   public List<Buy> getBuy(String keyword) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
