@@ -9,6 +9,6 @@ public class FcushopApplication {
   public static void main(String[] args) {
     SpringApplication.run(FcushopApplication.class, args);
   }
-  //jenkinstest
+  //jenkinstest2
 
 }
