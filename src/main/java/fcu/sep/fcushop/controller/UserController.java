@@ -10,23 +10,32 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private User user;
+
     @Autowired
     UserService userManager;
 
     @GetMapping("/register/{data}")
     public String register(@PathVariable("data") String data) {
         String[] buf = data.split(",");
-        User user;
         user = new User();
         for (User users : userManager.getUser(buf[1])) {
             user = users;
         }
         if (user.getName() == null) {
             userManager.pushUser(buf[0],buf[1], buf[2], buf[3], buf[4]);
+            for (User users : userManager.getUser(buf[1])) {
+                user = users;
+            }
             return "註冊成功";
         } else {
             return "此帳號已被使用";
         }
+    }
+
+    @GetMapping("/login")
+    public User getUser() {
+        return user;
     }
 
     @GetMapping("/login/{data}")
@@ -36,7 +45,6 @@ public class UserController {
         buf = data.split(",");
         account = buf[0];
         password = buf[1];
-        User user;
         user = new User();
         for (User users : userManager.getUser(account)) {
             user = users;
@@ -52,5 +60,10 @@ public class UserController {
             }
         }
         return "你好! " + name;
+    }
+
+    @GetMapping("/logout")
+    public void logout() {
+        user = null;
     }
 }
