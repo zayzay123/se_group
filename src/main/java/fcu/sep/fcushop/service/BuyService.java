@@ -18,14 +18,14 @@ public class BuyService {
 
   }
 
-  public List<Buy> getBuy() {
+  /*public List<Buy> getBuy() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
           + " from Buy";
 
       return connection.createQuery(query).executeAndFetch(Buy.class);
     }
-  }
+  }*/
 
   public void pushBuy(String buyName) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {

@@ -16,11 +16,11 @@ public class BuyController {
   @Autowired
   BuyService productManager;
 
-  @GetMapping("/buy")
+  /*@GetMapping("/buy")
   public List<Buy> getBuy() {
     return productManager.getBuy();
 
-  }
+  }*/
 
   @GetMapping("/buy/{data}")
   public String buy(@PathVariable("data") String data) {
