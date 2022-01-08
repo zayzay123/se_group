@@ -18,21 +18,21 @@ public class BuyService {
 
   }
 
-  /*public List<Buy> getBuy() {
+  public List<Buy> getBuy() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          + " from Buy";
+          + " from fcu_shop.buy";
 
       return connection.createQuery(query).executeAndFetch(Buy.class);
     }
-  }*/
+  }
 
-  public void pushBuy(String buyName) {
+  public void pushBuy(int buyID) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into BUY (NAME)"
-          + "values (:buyName)";
+      String query = "insert into fcu_shop.buy (NAME, IMAGE_URL, PRICE, DESCRIPTION)"
+          + "SELECT NAME, IMAGE_URL, PRICE, DESCRIPTION FROM fcu_shop.product WHERE ID = :buyID";
       connection.createQuery(query)
-          .addParameter("buyName", buyName)
+          .addParameter("buyID", buyID)
           .executeUpdate();
     }
   }
@@ -40,7 +40,7 @@ public class BuyService {
   public List<Buy> getBuy(String keyword) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          + " from Buy where name like :keyword";
+          + " from fcu_shop.buy where name like :keyword";
 
       return connection.createQuery(query)
           .addParameter("keyword", "%"+keyword+"%")
