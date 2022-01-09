@@ -16,9 +16,9 @@ public class UserModelTest {
 
     @Test
     public void testUserId() {
-        String expectedOutput = "AB00000001";
-        user.setId("AB00000001");
-        String actualOutput = user.getId();
+        int expectedOutput = 1;
+        user.setId(1);
+        int actualOutput = user.getId();
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 
@@ -59,6 +59,14 @@ public class UserModelTest {
         String expectedOutput = "0923459878";
         user.setPhoneNumber("0923459878");
         String actualOutput = user.getPhoneNumber();
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testUserOderNumber() {
+        int expectedOutput = 1;
+        user.setBuyId(1);
+        int actualOutput = user.getBuyId();
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 }
