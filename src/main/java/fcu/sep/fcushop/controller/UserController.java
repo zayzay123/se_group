@@ -29,6 +29,7 @@ public class UserController {
             }
             return "註冊成功";
         } else {
+            user = null;
             return "此帳號已被使用";
         }
     }
@@ -50,10 +51,12 @@ public class UserController {
             user = users;
         }
         if (user.getName() == null) {
+            user = null;
             return "這帳號不存在";
         } else {
             int comp = password.compareTo(user.getPassword());
             if (comp != 0) {
+                user = null;
                 return "密碼錯誤";
             } else {
                 name = user.getName();

@@ -100,7 +100,11 @@
     <tr>
       <td><button class="btn btn-outline-secondary" type="button" id="register">註冊</button></td>
       <td></td>
-      <td></td>
+    </tr>
+    <tr>
+      <td class="nav-item" id="backIndex">
+        <a class="nav-link active" aria-current="page" href="index.html">返回首頁</a>
+      </td>
     </tr>
   </table>
 </form>
@@ -122,6 +126,7 @@
 <script>
   $( document ).ready( function() {
     console.log( "ready!" );
+    $('#backIndex').hide();
     getUser('login');
   });
     $('#register').click(function() {
@@ -152,6 +157,9 @@
         .done(function( text ) {
           let Massage = text;
           $('#massage').append(Massage);
+          if (Massage === '註冊成功') {
+            $('#backIndex').fadeIn();
+          }
         })
         .fail(function( xhr, status, errorThrown ) {
           console.log( "Sorry, there was a problem!" );

@@ -86,7 +86,11 @@
     <tr>
       <td><button class="btn btn-outline-secondary" type="button" id="login">登入</button></td>
       <td></td>
-      <td></td>
+    </tr>
+    <tr>
+      <td class="nav-item" id="backIndex">
+        <a class="nav-link active" aria-current="page" href="index.html">返回首頁</a>
+      </td>
     </tr>
   </table>
 </form>
@@ -109,6 +113,7 @@
   $( document ).ready( function() {
     console.log( "ready!" );
     $('#showUser').hide();
+    $('#backIndex').hide();
     getUser('login');
   });
     $('#login').click(function() {
@@ -136,6 +141,11 @@
         .done(function( text ) {
           let Massage = text;
           $('#massage').append(Massage);
+          if (Massage === '這帳號不存在' || Massage === '密碼錯誤') {
+            $('#backIndex').hide();
+          } else {
+            $('#backIndex').fadeIn();
+          }
         })
         .fail(function( xhr, status, errorThrown ) {
           console.log( "Sorry, there was a problem!" );
