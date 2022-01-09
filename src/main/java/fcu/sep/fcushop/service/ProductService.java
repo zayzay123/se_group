@@ -21,7 +21,7 @@ public class ProductService {
   public List<Product> getProducts() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          + " from PRODUCT";
+          + " from Team04.product";
 
       return connection.createQuery(query).executeAndFetch(Product.class);
     }
@@ -30,7 +30,7 @@ public class ProductService {
   public List<Product> getProducts(String keyword) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          + " from PRODUCT where name like :keyword";
+          + " from Team04.product where name like :keyword";
 
       return connection.createQuery(query)
           .addParameter("keyword", "%"+keyword+"%")
